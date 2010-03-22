@@ -1,0 +1,46 @@
+Writen by Frederico de Souza Araujo
+fred.the.master@gmail.com
+
+
+Requirements: 
+
+- Operating Systems: GNU Linux, OSX
+- Ruby tmail (not sendmail)
+- rubygems: sequel (very fast db adapter)
+- Email Scheme: .maildir style (tested with postfix)
+- Required Unix tools: gnu find, grep, cat, cut, head, tail, file, sed 
+    (all part of default GNU LINUX systems)
+- Ruby 1.8.6 and 1.8.7
+- Recommended ruby version: Ruby-1.8.7 (much faster and  less memory)
+- rsync  (included in osx and many Linux distros)
+
+
+Performance:
+
+- Run Time: a bit slow: 5-10 seconds to parse 100 emails on opteron CPU.
+- Memory usage: (parsing 100 emails, ruby-1.8.7, OSX 10.5.6)
+    - Residual Memory: 15MB 
+    - Virtual Memory: 29MB
+
+
+Todos:
+
+- Write tests
+- Test on ruby-1.9
+- Check the timezone different between developers and server....
+- Improve memory usage 
+- rewrite parse methods to use ruby methods instead of unix tools 
+  will be slower, but more portable to other Operating systems
+
+
+
+Recomendations:
+
+- Configure your application to use TMAIL to send your emails,
+  because tmail will set message_id in the email before hand,  
+  so that you will be able to save it in the database.
+  Set ActionMailer.delivery_method => :smtp 
+  instead of ActionMailer.delivery_method => :sendmail, 
+  because sendmail (postfix) will not set the message_id, 
+  thus you will not be able to see the real message_id.
+

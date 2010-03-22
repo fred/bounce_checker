@@ -1,0 +1,58 @@
+######################
+### LOCAL SETTINGS ###
+######################
+
+# Running locally or from server
+remote: true
+
+# debug mode?
+debug: true
+
+# Local Temp Maildir Folder
+maildir: "/tmp/maildir"
+
+#### Delete not found:
+# Should we mark new messages as "read" if they are not found in the database?
+# if true, mark as read messages that were not found in db.
+#    false: always faster (good for production)
+# if false, keep messsages that were not found in db. 
+#    they will be parsed again everytime.
+#    (will get slower over time, after accumulating old messsages)
+# default: false (good for testing)
+delete_not_found: false
+
+#### Time Delta:
+# check only emails that are newer than last match email plus 'n' minutes
+# default 10 minutes
+delta_time: 10
+# TODO: must check the timezone different between developers and server....
+
+
+#######################
+### REMOTE SETTINGS ###
+#######################
+
+#### Clean up days:
+# Messages older than 'n' days will be moved to trash
+# default 30 days
+older_than: 30
+
+#### LOG ###
+# use standard output (for local dev)
+log_file: 'sequel_log.log'
+
+# Remote Folder and Maildir Variables
+remote_maildir: "/home/deploy/.maildir"
+
+# Remote server address
+remote_server: "theultralounge.com"
+
+# Remote user, default should be deploy user... 
+# you will also need to provide fred your id_dsa.pub or id_rsa.pub key.
+# in order to rsync without password.
+# the keys are available in your home directory under .ssh ( ~/.ssh/ )
+# if they are not there, just generate them:
+#   ssh-keygen -t dsa
+#     or 
+#   ssh-keygen -t rsa
+remote_user: "deploy"
